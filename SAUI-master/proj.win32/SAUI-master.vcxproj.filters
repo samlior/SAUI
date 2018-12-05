@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SAUI">
+      <UniqueIdentifier>{a317cf89-ac9a-440c-9cbc-68b51d3d0a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SA">
+      <UniqueIdentifier>{9a72acd6-dc7c-4393-86e7-f0a376c7eb95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QRCode">
+      <UniqueIdentifier>{fc2d1151-7abf-441a-8f2a-9bec9b00b13d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SAButton.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SAButtonGroup.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SAControlButton.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SAGLViewImpl.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SAMessageBox.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SAQRCode.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SASheet.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SASlider.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SATableView.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SA\SAUtils.cpp">
+      <Filter>SA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\QRCode\QRCodeCreator.cpp">
+      <Filter>QRCode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SALoadingScene.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SANode.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAButton.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAButtonGroup.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAControlButton.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAGLViewImpl.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAMessageBox.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAQRCode.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SASheet.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SASlider.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SATableView.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SA\SACreator.h">
+      <Filter>SA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SA\SAExternal.h">
+      <Filter>SA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SA\SAHeader.h">
+      <Filter>SA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SA\SAInstanceCreator.h">
+      <Filter>SA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SA\SANotificationCenter.h">
+      <Filter>SA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SA\SAUtils.h">
+      <Filter>SA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAUI.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\QRCode\QRCodeCreator.h">
+      <Filter>QRCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SALoadingScene.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SANode.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
