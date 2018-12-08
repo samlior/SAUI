@@ -10,14 +10,14 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SAUI">
-      <UniqueIdentifier>{a317cf89-ac9a-440c-9cbc-68b51d3d0a5f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SA">
       <UniqueIdentifier>{9a72acd6-dc7c-4393-86e7-f0a376c7eb95}</UniqueIdentifier>
     </Filter>
     <Filter Include="QRCode">
       <UniqueIdentifier>{fc2d1151-7abf-441a-8f2a-9bec9b00b13d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SAUI">
+      <UniqueIdentifier>{c2cae70b-597b-4510-98fc-1ef5c7efed1a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +29,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SA\SAUtils.cpp">
+      <Filter>SA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\QRCode\QRCodeCreator.cpp">
+      <Filter>QRCode</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SAUI\SAButton.cpp">
       <Filter>SAUI</Filter>
@@ -42,7 +48,13 @@
     <ClCompile Include="..\Classes\SAUI\SAGLViewImpl.cpp">
       <Filter>SAUI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SALoadingScene.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\SAUI\SAMessageBox.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SANode.cpp">
       <Filter>SAUI</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SAUI\SAQRCode.cpp">
@@ -57,16 +69,7 @@
     <ClCompile Include="..\Classes\SAUI\SATableView.cpp">
       <Filter>SAUI</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SA\SAUtils.cpp">
-      <Filter>SA</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\QRCode\QRCodeCreator.cpp">
-      <Filter>QRCode</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SAUI\SALoadingScene.cpp">
-      <Filter>SAUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SAUI\SANode.cpp">
+    <ClCompile Include="..\Classes\SAUI\SAAdaptedBox.cpp">
       <Filter>SAUI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,33 +82,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SAButton.h">
-      <Filter>SAUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SAButtonGroup.h">
-      <Filter>SAUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SAControlButton.h">
-      <Filter>SAUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SAGLViewImpl.h">
-      <Filter>SAUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SAMessageBox.h">
-      <Filter>SAUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SAQRCode.h">
-      <Filter>SAUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SASheet.h">
-      <Filter>SAUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SASlider.h">
-      <Filter>SAUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SATableView.h">
-      <Filter>SAUI</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SA\SACreator.h">
       <Filter>SA</Filter>
@@ -125,16 +101,46 @@
     <ClInclude Include="..\Classes\SA\SAUtils.h">
       <Filter>SA</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SAUI\SAUI.h">
-      <Filter>SAUI</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\QRCode\QRCodeCreator.h">
       <Filter>QRCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAButton.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAButtonGroup.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAControlButton.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAGLViewImpl.h">
+      <Filter>SAUI</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SAUI\SALoadingScene.h">
       <Filter>SAUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAMessageBox.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\SAUI\SANode.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAQRCode.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SASheet.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SASlider.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SATableView.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAUI.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAAdaptedBox.h">
       <Filter>SAUI</Filter>
     </ClInclude>
   </ItemGroup>

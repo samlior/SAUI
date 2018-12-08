@@ -3,6 +3,7 @@
 #ifdef SA_USE_GLVIEW_IMPL
 
 #include "cocos2d.h"
+#include "SA/SACreator.h"
 
 /////////////////////警告///////////////////
 //如果想使用此类,请替换cocos2d/cocos/platform/desktop/CCGLViewImpl-desktop.h及.cpp
@@ -22,9 +23,6 @@ public:
 	//当应用程序即将关闭时进入回调
 	virtual void applicationWillTerminate() {}
 };
-
-
-
 
 class SAGLViewImpl : public cocos2d::GLViewImpl
 {

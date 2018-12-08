@@ -11,7 +11,7 @@ using SASheetElementTouchedCallBack = std::function<void(SASheet*, const SAPoint
 
 //鼠标移动回调
 //如果point等于SASheet::pointOutOfRange 则代表移出表格或移入表格
-using SASheetMouseMoveCallBack = std::function<void(SASheet*, const SAPoint&, const SAPoint&)>;
+using SASheetMouseMoveCallBack = std::function<void(SASheet*, cocos2d::EventMouse*, const SAPoint&, const SAPoint&)>;
 
 
 

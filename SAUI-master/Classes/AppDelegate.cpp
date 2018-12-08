@@ -164,18 +164,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 		}
 	});
 
-	pScene->setLoadOverCallBack([](SALoadingScene* pScene, void*) 
+	pScene->setLoadOverCallBack([](SALoadingScene*, void*) 
 	{
 		auto scene = HelloWorld::createScene();
 		Director::getInstance()->replaceScene(scene);
 	});
 
-
-
-
     // run
     director->runWithScene(pScene);
-
     return true;
 }
 

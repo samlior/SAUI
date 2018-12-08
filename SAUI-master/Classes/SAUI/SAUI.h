@@ -9,6 +9,7 @@
 #include "SAUI/SASlider.h"
 #include "SAUI/SATableView.h"
 #include "SAUI/SALoadingScene.h"
+#include "SAUI/SAAdaptedBox.h"
 
 #ifdef SA_USE_QRCODE
 #include "SAUI/SAQRCode.h"

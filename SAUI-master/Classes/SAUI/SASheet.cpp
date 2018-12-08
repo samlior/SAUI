@@ -205,7 +205,7 @@ void SASheet::mouseMoveCallBack(EventMouse* pEvent)
 		return;
 
 	static SAPoint pointLast(pointOutOfRange);
-	Vec2& vec2 = pEvent->getLocationInView();
+	const Vec2& vec2 = pEvent->getLocationInView();
 	if (SAUtils::isContain(this, vec2))
 	{
 		const SAPoint& point = convertVec2ToSAPoint(convertToNodeSpace(vec2));
@@ -215,7 +215,7 @@ void SASheet::mouseMoveCallBack(EventMouse* pEvent)
 			if (m_funcMouseMoveCallBack &&
 				point != pointLast)
 			{
-				m_funcMouseMoveCallBack(this, pointLast, point);
+				m_funcMouseMoveCallBack(this, pEvent, pointLast, point);
 				pointLast = point;
 			}
 			return;
@@ -225,7 +225,7 @@ void SASheet::mouseMoveCallBack(EventMouse* pEvent)
 	if (m_funcMouseMoveCallBack && 
 		pointLast != pointOutOfRange)
 	{
-		m_funcMouseMoveCallBack(this, pointLast, pointOutOfRange);
+		m_funcMouseMoveCallBack(this, pEvent, pointLast, pointOutOfRange);
 		pointLast = pointOutOfRange;
 	}
 }

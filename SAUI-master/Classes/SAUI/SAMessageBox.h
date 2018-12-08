@@ -42,7 +42,6 @@ public:
 	* @param bTouchDisappear			true-当用户点击在背景内但在对话框外的任意一点时,对话框消失 false-反之
 	*/
 	void startTouchListen(bool bSwallowTouches = true, bool bTouchDisappear = false);
-
 	void setTouchDisappear(bool bTouchDisappear);
 
 	//停止监听点击事件

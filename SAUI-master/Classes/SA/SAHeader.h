@@ -1,6 +1,6 @@
 #pragma once
 
-enum enSAFileConfig
+enum SAFileConfig
 {
 	//从本地加载文件
 	LOAD_TEXTURE_FROM_LOCAL = 0b0000,

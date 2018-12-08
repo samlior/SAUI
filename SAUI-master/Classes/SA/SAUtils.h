@@ -1,5 +1,7 @@
 #pragma once
 #include "cocos2d.h"
+#include "cocos-ext.h"
+#include "SA/SAHeader.h"
 
 class SAUtils
 {
@@ -27,5 +29,26 @@ public:
 
 	//获取节点总尺寸
 	static cocos2d::Size getTotalContentSize(cocos2d::Node* pNode);
+
+	static void getTotalContentOffset(cocos2d::Node* pNode, float& xl, float& xr, float& yu, float& yb);
 };
 
+static cocos2d::Sprite* operator "" _2spr(const char* p, size_t)
+{
+	return cocos2d::Sprite::create(p);
+}
+
+static cocos2d::Sprite* operator "" _2spr_f(const char* p, size_t)
+{
+	return cocos2d::Sprite::createWithSpriteFrameName(p);
+}
+
+static cocos2d::extension::Scale9Sprite* operator "" _2s9spr(const char* p, size_t)
+{
+	return cocos2d::extension::Scale9Sprite::create(p);
+}
+
+static cocos2d::extension::Scale9Sprite* operator "" _2s9spr_f(const char* p, size_t)
+{
+	return cocos2d::extension::Scale9Sprite::createWithSpriteFrameName(p);
+}

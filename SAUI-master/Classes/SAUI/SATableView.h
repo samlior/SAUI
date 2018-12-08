@@ -21,7 +21,7 @@ public:
 	void setScrollEnable(bool bScrollable) { m_bScrollable = bScrollable; }
 
 	//设置是否可以缩放
-	void setZoomScaleabel(bool bZoomScaleable) { m_bZoomScaleable = bZoomScaleable; }
+	void setZoomScaleable(bool bZoomScaleable) { m_bZoomScaleable = bZoomScaleable; }
 
 	//缩放事件回调
 	virtual void scrollViewDidZoom(cocos2d::extension::ScrollView* view) override;

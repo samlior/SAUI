@@ -5,10 +5,6 @@
 using namespace std;
 using namespace cocos2d;
 
-
-
-
-
 SAGLViewImpl* SAGLViewImpl::create(const string& viewName)
 {
 	return SAGLViewImpl::create(viewName, false);

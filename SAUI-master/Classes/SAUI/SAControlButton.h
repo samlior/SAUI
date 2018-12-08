@@ -25,6 +25,7 @@ class SATableView;
 class SAComboBox;
 using SAComboBoxCallBack = std::function<bool(SAComboBox*, cocos2d::extension::TableViewCell*)>;
 
+//基于tableview的下拉框
 class SAComboBox : public SAControlButton
 {
 public:

@@ -58,12 +58,19 @@ void SAUtils::removeChildByTag(cocos2d::Node* pParent, int iTagBegin, int iTagEn
 
 Size SAUtils::getTotalContentSize(Node* pNode)
 {
+	float xl = 0, xr = 0, yu = 0, yb = 0;
+	getTotalContentOffset(pNode, xl, xr, yu, yb);
+	return Size(xr - xl, yu - yb);
+}
+
+void SAUtils::getTotalContentOffset(Node* pNode, float& xl, float& xr, float& yu, float& yb)
+{
 	const Size& size = pNode->getContentSize();
 	bool bEmptySize = (!size.width && !size.height);
-	float xl = 0;
-	float xr = size.width;
-	float yb = 0;
-	float yu = size.height;
+	xl = 0;
+	xr = size.width;
+	yb = 0;
+	yu = size.height;
 
 	const Vector<Node*>& vecChildren = pNode->getChildren();
 	for (auto itr = vecChildren.begin(); itr != vecChildren.end(); ++itr)
@@ -71,14 +78,16 @@ Size SAUtils::getTotalContentSize(Node* pNode)
 		Node* pNodeChild = *itr;
 		const Vec2& vec2PInP = pNodeChild->getAnchorPointInPoints();
 		const Vec2& vec2Pos = pNodeChild->getPosition();
-		Vec2 vec2OrgPos = vec2Pos - vec2PInP;
+		Vec2 vec2OrgPos = (pNodeChild->isIgnoreAnchorPointForPosition() ? vec2Pos : vec2Pos - vec2PInP);
 
-		const Size& sizeChild = getTotalContentSize(pNodeChild);
+		float xlChild = 0, xrChild = 0, ybChild = 0, yuChild = 0;
+		getTotalContentOffset(pNodeChild, xlChild, xrChild, yuChild, ybChild);
+		const Size& sizeChild = Size(xrChild - xlChild, yuChild - ybChild);
 
-		float xlChild = vec2OrgPos.x;
-		float xrChild = vec2OrgPos.x + sizeChild.width;
-		float ybChild = vec2OrgPos.y;
-		float yuChild = vec2OrgPos.y + sizeChild.height;
+		xlChild += vec2OrgPos.x;
+		xrChild += vec2OrgPos.x;
+		ybChild += vec2OrgPos.y;
+		yuChild += vec2OrgPos.y;
 
 		if (bEmptySize)
 		{
@@ -96,6 +105,4 @@ Size SAUtils::getTotalContentSize(Node* pNode)
 			yu = MAX(yu, yuChild);
 		}
 	}
-
-	return Size(xr - xl, yu - yb);
 }

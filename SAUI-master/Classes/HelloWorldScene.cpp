@@ -350,7 +350,47 @@ void HelloWorld::createSheetTest()
 	m_pSheetTest = SANode::Create::create();
 
 	{
-		SASheet* pSheet = SASheet::CreateWithSpace::create(g_sizeSheetElement, SASize(3, 3), 10, 10);
+		SAAdaptedBox* pAdpBox = SAAdaptedBox::CreateWithBackground::create(Scale9Sprite::create("s9w.png"));
+		pAdpBox->setVisible(false);
+		pAdpBox->setOffsetSize(Size(10, 10));
+		pAdpBox->startMouseMoveListen();
+		//pAdpBox->setAdaptMode(false);
+		//pAdpBox->setForceMode(false);
+
+		//std::vector<SAAdaptedBox::AdaptDirection> vecPriority = { SAAdaptedBox::AdaptDirection::RIGHT_BOTTOM, SAAdaptedBox::AdaptDirection::RIGHT_TOP };
+		//pAdpBox->setDirectionPriority(vecPriority);
+
+		{
+			Label* pLable1 = Label::createWithTTF("LEFT_BOTTOM", DEFAULT_FONT_NAME, 20);
+			pLable1->setColor(Color3B(0x3C, 0x3C, 0x3C));
+			pLable1->setAnchorPoint(Vec2::ZERO);
+			pLable1->setPosition(-250, -250);
+			pAdpBox->addChild(pLable1);
+
+			Label* pLable2 = Label::createWithTTF("LEFT_TOP", DEFAULT_FONT_NAME, 20);
+			pLable2->setColor(Color3B(0x3C, 0x3C, 0x3C));
+			pLable2->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
+			pLable2->setPosition(-250, 250);
+			pAdpBox->addChild(pLable2);
+
+			Label* pLable3 = Label::createWithTTF("RIGHT_BOTTOM", DEFAULT_FONT_NAME, 20);
+			pLable3->setColor(Color3B(0x3C, 0x3C, 0x3C));
+			pLable3->setAnchorPoint(Vec2::ANCHOR_BOTTOM_RIGHT);
+			pLable3->setPosition(250, -250);
+			pAdpBox->addChild(pLable3);
+
+			Label* pLable4 = Label::createWithTTF("RIGHT_TOP", DEFAULT_FONT_NAME, 20);
+			pLable4->setColor(Color3B(0x3C, 0x3C, 0x3C));
+			pLable4->setAnchorPoint(Vec2::ANCHOR_TOP_RIGHT);
+			pLable4->setPosition(250, 250);
+			pAdpBox->addChild(pLable4);
+		}
+
+		m_pSheetTest->addChild(pAdpBox, 10);
+
+
+
+		SASheet* pSheet = SASheet::Create::create(g_sizeSheetElement, SASize(3, 3));
 		vector<Node*> vecTotalElement;
 		for (int i = 0; i < 9; i++)
 		{
@@ -361,13 +401,8 @@ void HelloWorld::createSheetTest()
 		Vec2 vec2(g_sizeVisible.width / 2 - sizeTotalContent.width / 2, g_sizeVisible.height / 16);
 		pSheet->setPosition(vec2);
 		pSheet->startMouseMoveListen();
-		pSheet->setMouseMoveCallBack([](SASheet* pSheet, const SAPoint& pointA, const SAPoint& pointB)
+		pSheet->setMouseMoveCallBack([pAdpBox](SASheet* pSheet, EventMouse* pEvent, const SAPoint& pointA, const SAPoint& pointB)
 		{
-			if (!pSheet->isVisible())
-			{
-				return;
-			}
-
 			if (pointA != SASheet::pointOutOfRange)
 			{
 				SheetElement* pElement = dynamic_cast<SheetElement*>(pSheet->at(pointA));
@@ -384,6 +419,12 @@ void HelloWorld::createSheetTest()
 				{
 					pElement->highLight();
 				}
+
+				pAdpBox->setVisible(true);
+			}
+			else
+			{
+				pAdpBox->setVisible(false);
 			}
 		});
 		m_pSheetTest->addChild(pSheet);
