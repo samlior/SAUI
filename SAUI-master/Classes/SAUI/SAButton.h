@@ -45,7 +45,8 @@ public:
 	virtual void setSelected(bool bIsSelected);
 	bool isSelected() { return m_bIsSelected; }
 
-	void setEnable(bool bEnable);
+	//设置是否启用
+	virtual void setEnable(bool bEnable);
 	bool isEnable() { return m_bEnable; }
 
 	//touch listener call back
@@ -57,6 +58,11 @@ public:
 	virtual void setTouchBeganCallBack(SAButtonBoolCallBack func) { m_funcOnTouchBegan = func; }
 	virtual void setTouchMovedCallBack(SAButtonCallBack func) { m_funcOnTouchMoved = func; }
 	virtual void setTouchEndedCallBack(SAButtonCallBack func) { m_funcOnTouchEnded = func; }
+
+	//开始监听触摸事件,默认开启
+	void startTouchListen(bool bSwallowTouches = true);
+	//停止监听触摸事件
+	void stopTouchListen();
 
 	//根据未选中状态普通精灵初始化
 	virtual bool init(
@@ -80,7 +86,6 @@ protected:
 
 	virtual void initButton(const cocos2d::Size& size, cocos2d::Node* pNode);
 
-	bool m_bIsSingleMode;
 	bool m_bIsSelected;
 	bool m_bEnable;
 
@@ -107,5 +112,9 @@ public:
 	using CreateWithNode = SACreator<true, SAButton, const cocos2d::Size&, cocos2d::Node*>;
 	using CreateWithS9Sprite = SACreator<true, SAButton, const cocos2d::Size&, cocos2d::extension::Scale9Sprite*>;
 
-	virtual void initButton(const cocos2d::Size& size, cocos2d::Node* pNode) override;
+	virtual void setSelected(bool bIsSelected) override;
+
+	virtual void setEnable(bool bEnable) override;
+
+	virtual bool touchBeganCallBack(cocos2d::Touch* pTouch, cocos2d::Event* pEvent) override;
 };

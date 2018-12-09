@@ -13,9 +13,6 @@
     <Filter Include="SA">
       <UniqueIdentifier>{9a72acd6-dc7c-4393-86e7-f0a376c7eb95}</UniqueIdentifier>
     </Filter>
-    <Filter Include="QRCode">
-      <UniqueIdentifier>{fc2d1151-7abf-441a-8f2a-9bec9b00b13d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SAUI">
       <UniqueIdentifier>{c2cae70b-597b-4510-98fc-1ef5c7efed1a}</UniqueIdentifier>
     </Filter>
@@ -32,9 +29,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SA\SAUtils.cpp">
       <Filter>SA</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\QRCode\QRCodeCreator.cpp">
-      <Filter>QRCode</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SAUI\SAButton.cpp">
       <Filter>SAUI</Filter>
@@ -100,9 +94,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SA\SAUtils.h">
       <Filter>SA</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\QRCode\QRCodeCreator.h">
-      <Filter>QRCode</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SAUI\SAButton.h">
       <Filter>SAUI</Filter>

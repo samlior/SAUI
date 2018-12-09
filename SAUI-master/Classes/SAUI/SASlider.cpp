@@ -27,7 +27,7 @@ SASlider::SASlider() :
 
 SASlider::~SASlider()
 {
-	stopListenMouseScroll();
+	stopMouseScrollListen();
 }
 
 bool SASlider::init(
@@ -55,7 +55,7 @@ bool SASlider::init(
 	return true;
 }
 
-void SASlider::startListenMouseScroll()
+void SASlider::startMouseScrollListen()
 {
 	if (!m_pListener)
 	{
@@ -72,7 +72,7 @@ void SASlider::startListenMouseScroll()
 	}
 }
 
-void SASlider::stopListenMouseScroll()
+void SASlider::stopMouseScrollListen()
 {
 	if (m_pListener)
 	{

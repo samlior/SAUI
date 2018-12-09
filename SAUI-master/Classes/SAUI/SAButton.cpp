@@ -20,23 +20,38 @@ SASelectedButton::SASelectedButton() :
 	m_funcOnTouchBegan(nullptr),
 	m_funcOnTouchMoved(nullptr),
 	m_funcOnTouchEnded(nullptr),
-	m_bIsSingleMode(false),
 	m_bIsSelected(false),
 	m_bEnable(true)
 {
-	m_pListener = EventListenerTouchOneByOne::create();
-	m_pListener->setSwallowTouches(true);
-	m_pListener->onTouchBegan = CC_CALLBACK_2(SAButton::touchBeganCallBack, this);
-	m_pListener->onTouchMoved = CC_CALLBACK_2(SAButton::touchMovedCallBack, this);
-	m_pListener->onTouchEnded = CC_CALLBACK_2(SAButton::touchEndedCallBack, this);
-	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_pListener, this);
 }
 
 SASelectedButton::~SASelectedButton()
 {
-	Director::getInstance()->getEventDispatcher()->removeEventListener(m_pListener);
+	stopTouchListen();
 }
 
+
+void SASelectedButton::startTouchListen(bool bSwallowTouches /* = true */)
+{
+	if (!m_pListener)
+	{
+		m_pListener = EventListenerTouchOneByOne::create();
+		m_pListener->setSwallowTouches(bSwallowTouches);
+		m_pListener->onTouchBegan = CC_CALLBACK_2(SASelectedButton::touchBeganCallBack, this);
+		m_pListener->onTouchMoved = CC_CALLBACK_2(SASelectedButton::touchMovedCallBack, this);
+		m_pListener->onTouchEnded = CC_CALLBACK_2(SASelectedButton::touchEndedCallBack, this);
+		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_pListener, this);
+	}
+}
+
+void SASelectedButton::stopTouchListen()
+{
+	if (m_pListener)
+	{
+		Director::getInstance()->getEventDispatcher()->removeEventListener(m_pListener);
+		m_pListener = nullptr;
+	}
+}
 
 bool SASelectedButton::init(const Size& size, const string& strFileName, int iConfig)
 {
@@ -71,6 +86,8 @@ void SASelectedButton::initButton(const Size& size, Node* pNode)
 	setContentSize(size);
 	addChildNode(m_pUnselectedNormal, pNode);
 	m_pUnselectedNormal->setVisible(true);
+
+	startTouchListen();
 }
 
 void SASelectedButton::addChildNode(Node*& pNode, Node* pNodeOuter)
@@ -163,76 +180,46 @@ void SASelectedButton::setDisabled(Scale9Sprite* pSprite)
 
 void SASelectedButton::setEnable(bool bEnable)
 {
-	m_bEnable = bEnable;
-	if (m_bIsSingleMode)
-	{
-		if (bEnable)
-		{
-			if (m_pDisabled)
-				m_pDisabled->setVisible(false);
-			m_pUnselectedNormal->setVisible(true);
-		}
-		else
-		{
-			if (m_pDisabled)
-			{
-				m_pDisabled->setVisible(true);
-				m_pUnselectedNormal->setVisible(false);
-			}
+	CCASSERT(m_pSelectedNormal != nullptr, "missing selected normal node!");
 
-			if (m_pUnselectedHighLight && m_pUnselectedHighLight->isVisible())
-				m_pUnselectedHighLight->setVisible(false);
-		}
+	m_bEnable = bEnable;
+	if (m_bEnable)
+	{
+		if (m_pDisabled)
+			m_pDisabled->setVisible(false);
+		if (m_bIsSelected)
+			m_pSelectedNormal->setVisible(true);
+		else
+			m_pUnselectedNormal->setVisible(true);
 	}
 	else
 	{
-		if (bEnable)
+		if (m_pDisabled)
 		{
-			if (m_pDisabled)
-				m_pDisabled->setVisible(false);
-			if (m_bIsSelected)
-				m_pSelectedNormal->setVisible(true);
-			else
-				m_pUnselectedNormal->setVisible(true);
+			m_pDisabled->setVisible(true);
+			m_pSelectedNormal->setVisible(false);
+			m_pUnselectedNormal->setVisible(false);
 		}
-		else
-		{
-			if (m_pDisabled)
-			{
-				m_pDisabled->setVisible(true);
-				m_pSelectedNormal->setVisible(false);
-				m_pUnselectedNormal->setVisible(false);
-			}
 
-			if (m_pUnselectedHighLight && m_pUnselectedHighLight->isVisible())
-				m_pUnselectedHighLight->setVisible(false);
-			if (m_pSelectedHighLight && m_pSelectedHighLight->isVisible())
-				m_pSelectedHighLight->setVisible(false);
-		}
+		if (m_pUnselectedHighLight && m_pUnselectedHighLight->isVisible())
+			m_pUnselectedHighLight->setVisible(false);
+		if (m_pSelectedHighLight && m_pSelectedHighLight->isVisible())
+			m_pSelectedHighLight->setVisible(false);
 	}
 }
 
 void SASelectedButton::setSelected(bool bIsSelected)
 {
+	CCASSERT(m_pSelectedNormal != nullptr, "missing selected normal node!");
+
 	if (bIsSelected != m_bIsSelected)
 	{
-		if (!m_bIsSingleMode)
-		{
-			m_bIsSelected = bIsSelected;
-		}
+		m_bIsSelected = bIsSelected;
 
 		if (m_pUnselectedHighLight && m_pUnselectedHighLight->isVisible())
 		{
 			m_pUnselectedHighLight->setVisible(false);
-
-			if (m_bIsSingleMode)
-			{
-				m_pUnselectedNormal->setVisible(true);
-			}
-			else
-			{
-				m_pSelectedNormal->setVisible(true);
-			}
+			m_pSelectedNormal->setVisible(true);
 		}
 		else if (m_pSelectedHighLight && m_pSelectedHighLight->isVisible())
 		{
@@ -240,18 +227,15 @@ void SASelectedButton::setSelected(bool bIsSelected)
 			m_pUnselectedNormal->setVisible(true);
 		}
 
-		if (!m_bIsSingleMode)
+		if (m_bIsSelected)
 		{
-			if (m_bIsSelected)
-			{
-				m_pUnselectedNormal->setVisible(false);
-				m_pSelectedNormal->setVisible(true);
-			}
-			else
-			{
-				m_pUnselectedNormal->setVisible(true);
-				m_pSelectedNormal->setVisible(false);
-			}
+			m_pUnselectedNormal->setVisible(false);
+			m_pSelectedNormal->setVisible(true);
+		}
+		else
+		{
+			m_pUnselectedNormal->setVisible(true);
+			m_pSelectedNormal->setVisible(false);
 		}
 	}
 }
@@ -264,28 +248,19 @@ bool SASelectedButton::touchBeganCallBack(Touch* pTouch, Event* pEvent)
 	{
 		if (!m_funcOnTouchBegan || m_funcOnTouchBegan(this, pTouch, pEvent))
 		{
+			CCASSERT(m_pSelectedNormal != nullptr, "missing selected normal node!");
+
 			if (m_pUnselectedNormal->isVisible())
 			{
-				if (m_bIsSingleMode)
-				{
-					if (m_pUnselectedHighLight)
-					{
-						m_pUnselectedNormal->setVisible(false);
-						m_pUnselectedHighLight->setVisible(true);
-					}
-				}
-				else
-				{
-					m_pUnselectedNormal->setVisible(false);
+				m_pUnselectedNormal->setVisible(false);
 
-					if (m_pUnselectedHighLight)
-					{
-						m_pUnselectedHighLight->setVisible(true);
-					}
-					else if (m_pSelectedNormal)
-					{
-						m_pSelectedNormal->setVisible(true);
-					}
+				if (m_pUnselectedHighLight)
+				{
+					m_pUnselectedHighLight->setVisible(true);
+				}
+				else if (m_pSelectedNormal)
+				{
+					m_pSelectedNormal->setVisible(true);
 				}
 			}
 			else
@@ -327,8 +302,56 @@ void SASelectedButton::touchEndedCallBack(Touch* pTouch, Event* pEvent)
 
 
 
-void SAButton::initButton(const Size& size, Node* pNode)
+void SAButton::setEnable(bool bEnable)
 {
-	m_bIsSingleMode = true;
-	SASelectedButton::initButton(size, pNode);
+	m_bEnable = bEnable;	
+	if (bEnable)
+	{
+		if (m_pDisabled)
+			m_pDisabled->setVisible(false);
+		m_pUnselectedNormal->setVisible(true);
+	}
+	else
+	{
+		if (m_pDisabled)
+		{
+			m_pDisabled->setVisible(true);
+			m_pUnselectedNormal->setVisible(false);
+		}
+
+		if (m_pUnselectedHighLight && m_pUnselectedHighLight->isVisible())
+			m_pUnselectedHighLight->setVisible(false);
+	}
+}
+
+void SAButton::setSelected(bool bIsSelected)
+{
+	if (bIsSelected != m_bIsSelected)
+	{
+		if (m_pUnselectedHighLight && m_pUnselectedHighLight->isVisible())
+		{
+			m_pUnselectedHighLight->setVisible(false);
+			m_pUnselectedNormal->setVisible(true);
+		}
+	}
+}
+
+bool SAButton::touchBeganCallBack(Touch* pTouch, Event* pEvent)
+{
+	if (m_bRespondEvent && m_bEnable && isVisible() && SAUtils::isContain(this, pTouch->getLocation()))
+	{
+		if (!m_funcOnTouchBegan || m_funcOnTouchBegan(this, pTouch, pEvent))
+		{
+			if (m_pUnselectedNormal->isVisible())
+			{
+				if (m_pUnselectedHighLight)
+				{
+					m_pUnselectedNormal->setVisible(false);
+					m_pUnselectedHighLight->setVisible(true);
+				}
+			}
+			return true;
+		}
+	}
+	return false;
 }

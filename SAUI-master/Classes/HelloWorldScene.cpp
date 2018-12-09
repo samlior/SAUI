@@ -209,6 +209,7 @@ void HelloWorld::createTableViewTest()
 
 		SASliderTableView* pTableView = SASliderTableView::CreateWithTag::create(this, g_sizeTableView, pSlider, TABLEVIEW_LEFT_TAG);
 		pTableView->setPosition(g_vec2TableView);
+		pTableView->setContentOffset(Vec2::ZERO);
 		m_pTableViewTest->addChild(pTableView);
 	}
 
@@ -224,6 +225,7 @@ void HelloWorld::createTableViewTest()
 
 		SASliderTableView* pTableView = SASliderTableView::CreateWithTag::create(this, g_sizeTableView, pSlider, TABLEVIEW_RIGHT_TAG);
 		pTableView->setPosition(Vec2(g_sizeVisible.width - g_vec2TableView.x - g_sizeTableView.width, g_vec2TableView.y));
+		pTableView->setContentOffset(Vec2::ZERO);
 		m_pTableViewTest->addChild(pTableView);
 	}
 
@@ -357,7 +359,7 @@ void HelloWorld::createSheetTest()
 		//pAdpBox->setAdaptMode(false);
 		//pAdpBox->setForceMode(false);
 
-		//std::vector<SAAdaptedBox::AdaptDirection> vecPriority = { SAAdaptedBox::AdaptDirection::RIGHT_BOTTOM, SAAdaptedBox::AdaptDirection::RIGHT_TOP };
+		//std::vector<SAAdaptedBox::AdaptDirection> vecPriority = { SAAdaptedBox::RIGHT_BOTTOM, SAAdaptedBox::RIGHT_TOP };
 		//pAdpBox->setDirectionPriority(vecPriority);
 
 		{
@@ -461,7 +463,7 @@ void HelloWorld::createMessageBoxTest()
 		m_pMessageBox->setContent("Are you sure you want to close?", DEFAULT_FONT_NAME, 20, Color3B(0x2C, 0x2C, 0x2C));
 		m_pMessageBox->setButton(vecButton, sizeMessageBox.height / 4);
 		m_pMessageBox->setBackground(g_sizeVisible);
-		m_pMessageBox->setVisible(false);
+		m_pMessageBox->setVisibleAndRespondEvent(false);
 		m_pMessageBox->setCallBack([this](SAMessageBox*, unsigned int uiIndex, SASelectedButton*) 
 		{ 
 			if (uiIndex)

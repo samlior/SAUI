@@ -3,12 +3,10 @@
 using namespace std;
 using namespace cocos2d;
 
-
-
-
 unsigned int SAButtonGroup::add(SASelectedButton* pBtn)
 {
 	m_vecAllBtn.push_back(pBtn);
+	pBtn->setTouchBeganCallBack(CC_CALLBACK_3(SAButtonGroup::touchBeganCallBack, this));
 	pBtn->setTouchEndedCallBack(CC_CALLBACK_3(SAButtonGroup::touchEndedCallBack, this));
 	return m_vecAllBtn.size() - 1;
 }
@@ -20,6 +18,11 @@ void SAButtonGroup::setSelected(unsigned int uiIndex)
 		(*itr)->setSelected((itr - m_vecAllBtn.begin() == uiIndex) ? true : false);
 	}
 	m_uiIndexSelected = uiIndex;
+}
+
+bool SAButtonGroup::touchBeganCallBack(SASelectedButton* pBtn, Touch* pTouch, Event* pEvent)
+{
+	return !pBtn->isSelected();
 }
 
 void SAButtonGroup::touchEndedCallBack(SASelectedButton* pBtn, Touch* pTouch, Event* pEvent)

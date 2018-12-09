@@ -14,6 +14,8 @@ public:
 
 	using Create = SACreator<false, SAButtonGroup>;
 
+	virtual bool init() { return true; }
+
 	//添加一个按钮到按钮组中
 	unsigned int add(SASelectedButton* pBtn);
 
@@ -23,9 +25,8 @@ public:
 	void setCallBack(SAButtonGroupCallBack func) { m_funcCallBack = func; }
 
 	//点击回调
+	bool touchBeganCallBack(SASelectedButton* pBtn, cocos2d::Touch* pTouch, cocos2d::Event* pEvent);
 	void touchEndedCallBack(SASelectedButton* pBtn, cocos2d::Touch* pTouch, cocos2d::Event* pEvent);
-
-	virtual bool init() { return true; }
 
 protected:
 	unsigned int m_uiIndexSelected;

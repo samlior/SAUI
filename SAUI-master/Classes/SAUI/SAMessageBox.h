@@ -34,7 +34,7 @@ public:
 
 	
 	/**
-	* @name startTouchListen
+	* @name startTouchListen			开始监听触摸事件
 	*
 	* @brief							当开启监听点击事件后,在SAMessageBox以下的所有节点将不再接受点击事件
 	*
@@ -43,14 +43,12 @@ public:
 	*/
 	void startTouchListen(bool bSwallowTouches = true, bool bTouchDisappear = false);
 	void setTouchDisappear(bool bTouchDisappear);
-
 	//停止监听点击事件
 	void stopTouchListen();
 
 
 	//开始监听键盘事件,当用户按下指定的按键时,对话框消失
 	void startKeyboardListen(cocos2d::EventKeyboard::KeyCode code = cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE);
-	
 	//停止监听键盘事件
 	void stopKeyboardListen();
 

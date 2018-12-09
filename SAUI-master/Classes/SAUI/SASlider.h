@@ -30,10 +30,13 @@ public:
 
 	virtual bool init(const cocos2d::Size& size, SliderDirection direction, SAButton* pBlocker = nullptr, SAButton* pHeader = nullptr, SAButton* pTailer = nullptr);
 
+	//获取方向
+	SliderDirection getDirection() { return m_direction; }
+
 	//开始监听鼠标事件
-	void startListenMouseScroll();
+	void startMouseScrollListen();
 	//停止监听鼠标事件
-	void stopListenMouseScroll();
+	void stopMouseScrollListen();
 
 	void setSliderCallBack(SASliderCallBack func) { m_func = func; }
 
@@ -68,7 +71,7 @@ public:
 	//设置单次偏移距离
 	void setContentOffsetEachPushPercent(float fOffsetEachPushPercent) { m_fOffsetEachPushPercent = fOffsetEachPushPercent; }
 	void setContentOffsetEachPush(float fOffsetEachPush);
-
+	//获取单次偏移距离
 	float getContentOffsetEachPushPercent() { return m_fOffsetEachPushPercent; }
 	float getContentOffsetEachPush();
 
@@ -76,7 +79,7 @@ public:
 	//设置偏移距离
 	virtual void setContentOffsetPercent(float fPercent, bool bCheckCallBack = true);
 	virtual void setContentOffset(float fOffset, bool bCheckCallBack = true);
-
+	//获取偏移距离
 	float getContentOffsetPercent();
 	float getContentOffset() { return m_fOffset; }
 
