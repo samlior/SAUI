@@ -44,10 +44,12 @@ using namespace CocosDenshion;
 
 USING_NS_CC;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(1366, 768);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(1366, 768);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(1366, 768);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(1366, 768);
+// static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
+// static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
+static cocos2d::Size designResolutionSize = cocos2d::Size(960, 540);
+static cocos2d::Size smallResolutionSize = cocos2d::Size(960, 540);
+static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
+static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
 AppDelegate::AppDelegate()
 {
@@ -85,7 +87,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 	using SAGLViewImpl = GLViewImpl;
 #endif
 
-    // initialize director
     auto director = Director::getInstance();
 	SAGLViewImpl* glview = dynamic_cast<SAGLViewImpl*>(director->getOpenGLView());
 
@@ -104,26 +105,18 @@ bool AppDelegate::applicationDidFinishLaunching()
         director->setOpenGLView(glview);
     }
 
-    // turn on display FPS
     director->setDisplayStats(true);
-
-    // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
-
-    // Set the design resolution
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
     auto frameSize = glview->getFrameSize();
-    // if the frame's height is larger than the height of medium size.
     if (frameSize.height > mediumResolutionSize.height)
     {        
         director->setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));
     }
-    // if the frame's height is larger than the height of small size.
     else if (frameSize.height > smallResolutionSize.height)
     {        
         director->setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));
     }
-    // if the frame's height is smaller than the height of medium size.
     else
     {        
         director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
@@ -132,20 +125,22 @@ bool AppDelegate::applicationDidFinishLaunching()
     register_all_packages();
 
 
-
+	//创建加载场景
 	SALoadingScene* pScene = SALoadingScene::CreateWithCallBack::create([](SALoadingScene* pScene) -> bool
 	{
-		SASlider* pSlider = SASlider::Create::create(Size(500, 75), SASlider::HORIZONTAL);
+		const Size& size = Director::getInstance()->getVisibleSize();
+
+		SASlider* pSlider = SASlider::Create::create(Size(size.width / 2, size.height / 7), SASlider::HORIZONTAL);
 		pSlider->setTag(SLIDER_TAG);
 		pSlider->setHeaderTexture(Sprite::create("texture.png"));
 		pSlider->setAnchorPoint(Vec2(0.5f, 0.5f));
-		const Size& size = Director::getInstance()->getVisibleSize();
 		pSlider->setPosition(size.width / 2, size.height / 2);
 		pScene->addChild(pSlider, 10);
 		pScene->setUpdateInterval(0.1f);
 		return true;
 	});
 
+	//设置更新进度回调(用户可以选择直接在此回调中读取数据或访问另一个线程的加载进度)
 	pScene->setUpdateCallBack([](SALoadingScene* pScene, float ft, float& fPercent, void*&) 
 	{
 		static const float fLenMax = 1.0f;
@@ -155,6 +150,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		return fPercent < 1.0f;
 	});
 
+	//设置更新ui回调(用户需要在此回调中更新ui)
 	pScene->setUpdateUICallBack([](SALoadingScene* pScene, float fPercent, void*)
 	{
 		SASlider* pSlider = dynamic_cast<SASlider*>(pScene->getChildByTag(SLIDER_TAG));
@@ -164,6 +160,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		}
 	});
 
+	//设置加载完成回调(用户可以选择在此回调中跳转到下一个场景)
 	pScene->setLoadOverCallBack([](SALoadingScene*, void*) 
 	{
 		auto scene = HelloWorld::createScene();

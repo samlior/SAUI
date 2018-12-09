@@ -1,18 +1,14 @@
 #ifdef SA_USE_QRCODE
 
 #include "SAQRCode.h"
-#include "QRCode/QRCodeCreator.h"
 #include "SA/SAUtils.h"
 #include <qr/qr.h>
 
 using namespace std;
 using namespace cocos2d;
 
-
 int SAQRCode::iQRCodeVersion = 4;
 int SAQRCode::iQRCodeECLevel = 2;
-
-
 
 bool SAQRCode::init(const string& strText)
 {
@@ -67,6 +63,7 @@ void SAQRCodeNode::reload(const string& strText)
 	m_pCode->setPosition(Vec2::ZERO);
 	addChild(m_pCode);
 }
+
 
 
 

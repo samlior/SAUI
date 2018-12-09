@@ -34,13 +34,6 @@ class HelloWorld : public cocos2d::Scene, public cocos2d::extension::TableViewDa
 public:
 	HelloWorld() :
 		m_pMessageBox(nullptr),
-		m_pTableViewTest(nullptr),
-		m_pSelectedButtonTest(nullptr),
-		m_pSheetTest(nullptr),
-		m_pMessageBoxTest(nullptr),
-		m_pQRCodeTest(nullptr),
-		m_pComboBoxTest(nullptr),
-		m_pGLViewImplTest(nullptr),
 		m_pGroup(nullptr),
 		m_pLabel1(nullptr),
 		m_pLabel2(nullptr) {}
@@ -56,13 +49,13 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
-	void createGLViewImplTest();
-	void createComboBoxTest();
-	void createQRCodeTest();
-	void createMessageBoxTest();
-	void createSheetTest();
-	void createSelectedButtonTest();
-	void createTableViewTest();
+	SANode* createGLViewImplTest();
+	SANode* createComboBoxTest();
+	SANode* createQRCodeTest();
+	SANode* createMessageBoxTest();
+	SANode* createSheetTest();
+	SANode* createSelectedButtonTest();
+	SANode* createTableViewTest();
 
 	//tableview datasource
 	virtual cocos2d::extension::TableViewCell* tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx) override;
@@ -75,14 +68,6 @@ public:
 
 private:
 	SAMessageBox* m_pMessageBox;
-
-	SANode* m_pTableViewTest;
-	SANode* m_pSelectedButtonTest;
-	SANode* m_pSheetTest;
-	SANode* m_pMessageBoxTest;
-	SANode* m_pQRCodeTest;
-	SANode* m_pComboBoxTest;
-	SANode* m_pGLViewImplTest;
 
 	SAButtonGroup* m_pGroup;
 
