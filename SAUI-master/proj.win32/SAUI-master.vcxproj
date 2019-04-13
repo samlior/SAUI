@@ -157,11 +157,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\SAUI\SAGLViewImpl.cpp" />
     <ClCompile Include="..\Classes\SAUI\SALoadingScene.cpp" />
     <ClCompile Include="..\Classes\SAUI\SAMessageBox.cpp" />
+    <ClCompile Include="..\Classes\SAUI\SAMessageInbox.cpp" />
     <ClCompile Include="..\Classes\SAUI\SANode.cpp" />
     <ClCompile Include="..\Classes\SAUI\SAQRCode.cpp" />
     <ClCompile Include="..\Classes\SAUI\SASheet.cpp" />
     <ClCompile Include="..\Classes\SAUI\SASlider.cpp" />
     <ClCompile Include="..\Classes\SAUI\SATableView.cpp" />
+    <ClCompile Include="..\Classes\SA\SAResolutionCalculator.cpp" />
     <ClCompile Include="..\Classes\SA\SAUtils.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -175,6 +177,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\SAUI\SAGLViewImpl.h" />
     <ClInclude Include="..\Classes\SAUI\SALoadingScene.h" />
     <ClInclude Include="..\Classes\SAUI\SAMessageBox.h" />
+    <ClInclude Include="..\Classes\SAUI\SAMessageInbox.h" />
     <ClInclude Include="..\Classes\SAUI\SANode.h" />
     <ClInclude Include="..\Classes\SAUI\SAQRCode.h" />
     <ClInclude Include="..\Classes\SAUI\SASheet.h" />
@@ -183,9 +186,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\SAUI\SAUI.h" />
     <ClInclude Include="..\Classes\SA\SACreator.h" />
     <ClInclude Include="..\Classes\SA\SAExternal.h" />
+    <ClInclude Include="..\Classes\SA\SAFactory.h" />
     <ClInclude Include="..\Classes\SA\SAHeader.h" />
     <ClInclude Include="..\Classes\SA\SAInstanceCreator.h" />
     <ClInclude Include="..\Classes\SA\SANotificationCenter.h" />
+    <ClInclude Include="..\Classes\SA\SARegisterFactory.h" />
+    <ClInclude Include="..\Classes\SA\SAResolutionCalculator.h" />
     <ClInclude Include="..\Classes\SA\SAUtils.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

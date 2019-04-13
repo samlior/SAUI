@@ -7,8 +7,11 @@
 using namespace std;
 using namespace cocos2d;
 
+
 int SAQRCode::iQRCodeVersion = 4;
 int SAQRCode::iQRCodeECLevel = 2;
+
+
 
 bool SAQRCode::init(const string& strText)
 {
@@ -63,7 +66,6 @@ void SAQRCodeNode::reload(const string& strText)
 	m_pCode->setPosition(Vec2::ZERO);
 	addChild(m_pCode);
 }
-
 
 
 

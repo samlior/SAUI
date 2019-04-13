@@ -66,6 +66,12 @@
     <ClCompile Include="..\Classes\SAUI\SAAdaptedBox.cpp">
       <Filter>SAUI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SAUI\SAMessageInbox.cpp">
+      <Filter>SAUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SA\SAResolutionCalculator.cpp">
+      <Filter>SA</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -133,6 +139,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SAUI\SAAdaptedBox.h">
       <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SAUI\SAMessageInbox.h">
+      <Filter>SAUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SA\SAFactory.h">
+      <Filter>SA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SA\SARegisterFactory.h">
+      <Filter>SA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SA\SAResolutionCalculator.h">
+      <Filter>SA</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

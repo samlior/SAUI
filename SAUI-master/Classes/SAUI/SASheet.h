@@ -35,11 +35,13 @@ public:
 	//获取元素个数
 	size_t getElementCount();
 	//为第uiRowIndex行增加一个元素
-	void append(unsigned int uiRowIndex, cocos2d::Node* pNode);
+	void append(size_t uiRowIndex, cocos2d::Node* pNode);
 	//为第uiRowIndex行增加vecNode里的元素
-	void append(unsigned int uiRowIndex, const std::vector<cocos2d::Node*>& vecNode);
+	void append(size_t uiRowIndex, const std::vector<cocos2d::Node*>& vecNode);
 	//自适应填充元素直到填充满
 	void append(const std::vector<cocos2d::Node*>& vecNode);
+	//自适应填充元素
+	void append(cocos2d::Node* pNode);
 	//重新填充
 	void reload(const std::vector<cocos2d::Node*>& vecNode);
 	//清空
@@ -92,7 +94,7 @@ public:
 	);
 
 protected:
-	void addChildNode(unsigned int uiX, unsigned int uiY, cocos2d::Node* pNode);
+	void addChildNode(size_t uiX, size_t uiY, cocos2d::Node* pNode);
 
 	SASize m_size;
 	float m_fSpaceLenX;

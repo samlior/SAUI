@@ -10,6 +10,8 @@
 #include "SAUI/SATableView.h"
 #include "SAUI/SALoadingScene.h"
 #include "SAUI/SAAdaptedBox.h"
+#include "SA/SAResolutionCalculator.h"
+#include "SA/SAFactory.h"
 
 #ifdef SA_USE_QRCODE
 #include "SAUI/SAQRCode.h"

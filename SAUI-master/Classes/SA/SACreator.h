@@ -1,6 +1,6 @@
 #pragma once
 
-#define CREATE_SACREATOR_HELPER(__CLASS_NAME__, __FUNC_NAME__) \
+#define CREATE_SACREATOR(__CLASS_NAME__, __FUNC_NAME__) \
 template<bool bAutoRelease, typename T, typename ... Args>\
 class __CLASS_NAME__\
 {\
@@ -23,4 +23,4 @@ public:\
 	}\
 };
 
-CREATE_SACREATOR_HELPER(SACreator, init);
+CREATE_SACREATOR(SACreator, init);

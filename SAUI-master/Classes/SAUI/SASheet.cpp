@@ -75,7 +75,7 @@ void SASheet::stopMouseMoveListen()
 	}
 }
 
-void SASheet::addChildNode(unsigned int uiX, unsigned int uiY, Node* pNode)
+void SASheet::addChildNode(size_t uiX, size_t uiY, Node* pNode)
 {
 	pNode->setAnchorPoint(Vec2::ZERO);
 	pNode->setIgnoreAnchorPointForPosition(false);
@@ -83,14 +83,14 @@ void SASheet::addChildNode(unsigned int uiX, unsigned int uiY, Node* pNode)
 	addChild(pNode);
 }
 
-void SASheet::append(unsigned int uiRowIndex, Node* pNode)
+void SASheet::append(size_t uiRowIndex, Node* pNode)
 {
 	vector<Node*>& vecNode = m_vecVecNode[uiRowIndex];
 	addChildNode(vecNode.size(), uiRowIndex, pNode);
 	vecNode.push_back(pNode);
 }
 
-void SASheet::append(unsigned int uiRowIndex, const vector<Node*>& vecNode)
+void SASheet::append(size_t uiRowIndex, const vector<Node*>& vecNode)
 {
 	for (auto itr = vecNode.begin(); itr != vecNode.end(); itr++)
 		append(uiRowIndex, *itr);
@@ -122,6 +122,12 @@ void SASheet::append(const vector<Node*>& vecNode)
 			uiOffset += uiCount;
 		}
 	}
+}
+
+void SASheet::append(Node* pNode)
+{
+	vector<Node*> vecNode = { pNode };
+	append(vecNode);
 }
 
 void SASheet::reload(const std::vector<cocos2d::Node*>& vecNode)
